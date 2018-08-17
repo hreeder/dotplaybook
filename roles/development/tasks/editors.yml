@@ -1,0 +1,21 @@
+---
+- name: "editors :: Add Microsoft GPG Key [Family_RedHat]"
+  when: ansible_os_family == "RedHat"
+  rpm_key:
+    state: present
+    key: https://packages.microsoft.com/keys/microsoft.asc
+
+- name: "editors :: Add VS Code Repository [Family_RedHat]"
+  when: ansible_os_family == "RedHat"
+  yum_repository:
+    name: code
+    description: Visual Studio Code
+    baseurl: https://packages.microsoft.com/yumrepos/vscode
+    gpgcheck: yes
+    gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+
+- name: "editors :: Install VS Code [Distro_Fedora]"
+  when: ansible_distribution == "Fedora"
+  dnf:
+    name: code
+    state: latest
