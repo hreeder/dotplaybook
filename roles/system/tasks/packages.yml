@@ -1,5 +1,16 @@
 ---
-- name: "packages :: Install htop"
+- name: "packages :: Install system packages"
   package:
-    name: htop
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - htop
+    - zsh
+
+- name: "packages :: Install python-selinux where required"
+  when: ansible_os_family == "RedHat"
+  package:
+    # This is for ansible, so we're using python2
+    # package name correct as of fedora28
+    name: python2-libselinux
     state: present

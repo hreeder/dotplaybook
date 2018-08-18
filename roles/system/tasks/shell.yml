@@ -1,0 +1,23 @@
+---
+- name: "shell :: Clone oh-my-zsh"
+  git:
+    repo: "https://github.com/robbyrussell/oh-my-zsh.git"
+    dest: "/home/{{ username }}/.oh-my-zsh"
+    depth: 1
+
+- name: "shell :: Add default .zshrc"
+  template:
+    src: zshrc.j2
+    dest: "/home/{{ username }}/.zshrc"
+    owner: "{{ username }}"
+
+- name: "shell :: Add sklullus.zsh-theme"
+  copy:
+    src: sklullus.zsh-theme
+    dest: "/home/{{ username }}/.oh-my-zsh/themes/"
+    owner: "{{ username }}"
+
+- name: "shell :: Set {{ username }} default to zsh"
+  user:
+    name: "{{ username }}"
+    shell: "/usr/bin/zsh"

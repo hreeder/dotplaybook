@@ -1,0 +1,33 @@
+system:
+  shell:
+    ohmyzsh:
+      theme: sklullus
+      plugins:
+        - docker
+        - git
+        - pip
+        - yarn
+        - mix
+        - command-not-found
+        - virtualenvwrapper
+        - zsh-syntax-highlighting
+    env_vars:
+      GOROOT: /usr/lib/go
+      GOPATH: "${HOME}/dev/go:${GOROOT}"
+      PATH:
+        - "${PATH}"
+        - "${HOME}/dev/go/bin"
+        - "${GOROOT}/bin"
+        - "${HOME}/bin"
+    aliases:
+      please: sudo
+      gpg: gpg2
+      npm-exec: "PATH=$(npm bin):$PATH"
+      # Docker
+      dc: docker-compose
+      # Git Aliases
+      # git: hub
+      gs: git status
+      gc: git commit
+      gp: git push
+      ga: git add
