@@ -2,3 +2,7 @@
 - hosts: workstations
   roles:
     - development
+
+- hosts: all
+  roles:
+    - system

@@ -1,0 +1,5 @@
+---
+- name: "packages :: Install htop"
+  package:
+    name: htop
+    state: present
